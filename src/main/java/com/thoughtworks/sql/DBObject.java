@@ -5,7 +5,7 @@ import static com.thoughtworks.sql.Constants.SPACE;
 
 public abstract class DBObject<T extends DBObject> {
     protected String alias;
-    protected final String expression;
+    public final String expression;
 
     protected DBObject(String expression){
         this.expression = expression;

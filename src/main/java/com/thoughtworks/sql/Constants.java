@@ -2,6 +2,10 @@ package com.thoughtworks.sql;
 
 public class Constants {
     static final String SELECT = "SELECT";
+	static final String DELETE = "DELETE";
+	static final String INSERT = "INSERT";
+	static final String INTO ="INTO";
+	static final String VALUES = "VALUES";
     static final String SPACE = " ";
     static final String AS = "AS";
     static final String COMMA = ",";

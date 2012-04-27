@@ -13,4 +13,9 @@ public class TableTest {
     public void should_get_field_from_table_directly(){
         assertThat(table("table").field("id"), equalTo(field("table.id")));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionIfTableDotFieldContainsOnlyField(){
+        field("field");
+    }
 }

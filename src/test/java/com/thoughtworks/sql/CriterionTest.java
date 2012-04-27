@@ -14,21 +14,21 @@ public class CriterionTest {
 
     @Test
     public void should_toString_of_single_criterion() {
-        assertThat(field("d").eq("'d'").toString(), equalTo("(d='d')"));
-        assertThat(field("d").neq("'d'").toString(), equalTo("(d<>'d')"));
-        assertThat(field("d").gt("'d'").toString(), equalTo("(d>'d')"));
-        assertThat(field("d").lt("'d'").toString(), equalTo("(d<'d')"));
-        assertThat(field("d").isNull().toString(), equalTo("(d IS NULL)"));
-        assertThat(field("d").isNotNull().toString(), equalTo("(d IS NOT NULL)"));
-        assertThat(field("d").between("'d1'", "'d2'").toString(), equalTo("(d BETWEEN 'd1' AND 'd2')"));
-        assertThat(field("d").like("'%d'").toString(), equalTo("(d LIKE '%d')"));
-        assertThat(field("d").in("'d1'", "'d2'").toString(), equalTo("(d IN ('d1','d2'))"));
+        assertThat(field("t","d").eq("'d'").toString(), equalTo("(t.d='d')"));
+        assertThat(field("t","d").neq("'d'").toString(), equalTo("(t.d<>'d')"));
+        assertThat(field("t","d").gt("'d'").toString(), equalTo("(t.d>'d')"));
+        assertThat(field("t","d").lt("'d'").toString(), equalTo("(t.d<'d')"));
+        assertThat(field("t","d").isNull().toString(), equalTo("(t.d IS NULL)"));
+        assertThat(field("t","d").isNotNull().toString(), equalTo("(t.d IS NOT NULL)"));
+        assertThat(field("t","d").between("'d1'", "'d2'").toString(), equalTo("(t.d BETWEEN 'd1' AND 'd2')"));
+        assertThat(field("t","d").like("'%d'").toString(), equalTo("(t.d LIKE '%d')"));
+        assertThat(field("t","d").in("'d1'", "'d2'").toString(), equalTo("(t.d IN ('d1','d2'))"));
     }
 
     @Test
     public void should_generate_constraint_by_partial_criterions_and_logic_operator() {
-        assertThat(and(field("d").eq("'d'"), field("a").neq("'a'")).toString(), equalTo("((d='d') AND (a<>'a'))"));
-        assertThat(or(field("d").eq("'d'"), field("a").neq("'a'")).toString(), equalTo("((d='d') OR (a<>'a'))"));
+        assertThat(and(field("t","d").eq("'d'"), field("t","a").neq("'a'")).toString(), equalTo("((t.d='d') AND (t.a<>'a'))"));
+        assertThat(or(field("t","d").eq("'d'"), field("t","a").neq("'a'")).toString(), equalTo("((t.d='d') OR (t.a<>'a'))"));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class CriterionTest {
     @Test
     @Ignore
     public void should_reverse_given_criterion_by_not(){
-        assertThat(not(field("d").eq("'d'")).toString(), equalTo("d<>'d'"));
+        assertThat(not(field("t","d").eq("'d'")).toString(), equalTo("t.d<>'d'"));
     }
 
 

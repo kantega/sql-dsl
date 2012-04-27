@@ -23,7 +23,7 @@ public class UnaryCriterion extends Criterion {
     }
 
     protected void beforePopulateOperator(StringBuilder sb) {
-        sb.append(expression);
+        sb.append(expression.getFullyQualifiedName());
     }
 
     protected void populateOperator(StringBuilder sb) {

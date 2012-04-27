@@ -10,7 +10,7 @@ public class FieldTest {
 
     @Test
     public void should_return_true_if_field_has_alias_name() {
-        Field field = field("ss");
+        Field field = field("t.ss");
         assertFalse(field.hasAlias());
         field.as("s");
         assertTrue(field.hasAlias());
