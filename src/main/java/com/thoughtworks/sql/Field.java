@@ -1,6 +1,7 @@
 package com.thoughtworks.sql;
 
 import static com.thoughtworks.sql.Constants.*;
+import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 public class Field extends DBObject<Field> {
 
@@ -12,24 +13,21 @@ public class Field extends DBObject<Field> {
 	}
 
 	public String getFullyQualifiedName() {
-		StringBuilder sb = new StringBuilder( table + "." + expression);
+		StringBuilder sb = new StringBuilder( );
+        if(isNotBlank(table)){
+            sb.append(table);
+            sb.append(".");
+        }
+        sb.append(expression);
+
 		if (hasAlias()) {
 			sb.append(SPACE).append(AS).append(SPACE).append(alias);
 		}
 		return sb.toString();
 	}
 
-    /**
-     * field constructor taking both table and fieldname in the same string
-     * @param tableDotField on the form table.field
-     * @return the created field
-     */
     public static Field field(String tableDotField) {
-        if(!tableDotField.matches("\\w+\\.\\w+")){
-            throw new IllegalArgumentException("Should be on form table.field");
-        }
-        String[] split = tableDotField.split("\\.");
-        return new Field(split[0], split[1]);
+        return new Field("", tableDotField);
     }
 
 	public static Field field(String table, String expression) {

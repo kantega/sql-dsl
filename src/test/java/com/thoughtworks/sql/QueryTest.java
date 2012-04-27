@@ -145,8 +145,10 @@ public class QueryTest {
 
     @Test
     public void should_accept_sub_query_in_where_clause() {
-        Query query = select().from(table("table")).where(field("d").in(field("d"), select().from(table("table2"))));
-        assertThat(query.toString(), equalTo("SELECT * FROM table WHERE (d IN (SELECT * FROM table2 )) "));
+        Table t = table("table");
+        Field d = t.field("d");
+        Query query = select().from(t).where(d.in(d, select().from(table("table2"))));
+        assertThat(query.toString(), equalTo("SELECT * FROM table WHERE (table.d IN (SELECT * FROM table2 )) "));
     }
 
 }
