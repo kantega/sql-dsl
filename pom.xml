@@ -12,6 +12,52 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <scm>
+        <connection>scm:git:git@github.com:kantega/sql-dsl.git</connection>
+    </scm>
+    <repositories>
+        <repository>
+            <id>opensource.kantega.no</id>
+            <name>Nexus Public Mirror</name>
+            <url>http://opensource.kantega.no/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>opensource.kantega.no-snapshots</id>
+            <name>Nexus Snapshots</name>
+            <url>http://opensource.kantega.no/nexus/content/groups/public-snapshots/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>opensource.kantega.no</id>
+            <name>Kantega Open Source Repository</name>
+            <url>http://opensource.kantega.no/nexus/content/groups/public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <distributionManagement>
+        <repository>
+            <id>opensource.kantega.no</id>
+            <name>opensource.kantega.no release repository</name>
+            <url>http://opensource.kantega.no/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>opensource.kantega.no</id>
+            <name>opensource.kantega.no snapshot repository</name>
+            <url>http://opensource.kantega.no/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.hamcrest</groupId>
