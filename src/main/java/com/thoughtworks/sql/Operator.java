@@ -37,6 +37,7 @@ public final class Operator {
         contraryRegistry.put(lt, gte);
         contraryRegistry.put(gte, lt);
         contraryRegistry.put(in, notIn);
+        contraryRegistry.put(notIn, in);
     }
 
     private Operator(String operator) {
