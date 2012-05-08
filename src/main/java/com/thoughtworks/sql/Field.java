@@ -95,6 +95,20 @@ public class Field extends DBObject<Field> {
 		};
 	}
 
+    public <T> Criterion notIn(final T... value) {
+        final Field field = this;
+        return new Criterion(Operator.notIn) {
+
+            protected void populate(StringBuilder sb) {
+                sb.append(field).append(SPACE).append(Operator.notIn).append(SPACE).append(LEFT_PARENTHESIS);
+                for (T t : value) {
+                    sb.append(t.toString()).append(COMMA);
+                }
+                sb.deleteCharAt(sb.length() - 1).append(RIGHT_PARENTHESIS);
+            }
+        };
+    }
+
 	public Criterion in(final Field expression, final Query query) {
 		final Field field = this;
 		return new Criterion(Operator.in) {

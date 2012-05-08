@@ -23,7 +23,8 @@ public final class Operator {
     public static final Operator exists = new Operator("EXISTS");
     public static final Operator like = new Operator("LIKE");
     public static final Operator in = new Operator("IN");
-    
+    public static final Operator notIn = new Operator("NOT IN");
+
     private static final Map<Operator, Operator> contraryRegistry = new HashMap<Operator, Operator>();
 
     static {
@@ -35,6 +36,7 @@ public final class Operator {
         contraryRegistry.put(lte, gt);
         contraryRegistry.put(lt, gte);
         contraryRegistry.put(gte, lt);
+        contraryRegistry.put(in, notIn);
     }
 
     private Operator(String operator) {
