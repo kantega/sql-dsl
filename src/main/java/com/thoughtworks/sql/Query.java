@@ -10,6 +10,7 @@ import static java.util.Arrays.asList;
 public class Query {
 
     private Table table;
+    private boolean distinct = false;
     private List<Criterion> criterions = new ArrayList<Criterion>();
     private List<Field> fields = new ArrayList<Field>();
     private List<Join> joins = new ArrayList<Join>();
@@ -21,8 +22,14 @@ public class Query {
         this.fields.addAll(asList(fields));
     }
 
+
     public static Query select(Field... fields) {
         return new Query(fields);
+    }
+
+    public Query distinct(){
+        distinct = true;
+        return this;
     }
 
     public Query from(Table table) {
@@ -75,6 +82,12 @@ public class Query {
         visitGroupByClause(sql);
         visitOrderByClause(sql);
         return sql.toString();
+    }
+
+    private void visitDisctinctClause(StringBuilder sql){
+        if(distinct){
+            sql.append(DISTINCT).append(SPACE);
+        }
     }
 
     private void visitOrderByClause(StringBuilder sql) {

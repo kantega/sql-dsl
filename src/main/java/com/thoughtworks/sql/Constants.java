@@ -23,4 +23,5 @@ public class Constants {
     static final String GROUP_BY = "GROUP BY";
     static final String WHERE = "WHERE";
     public static final String EXISTS = "EXISTS";
+    static final String DISTINCT = "DISTINCT";
 }
