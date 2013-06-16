@@ -26,6 +26,10 @@ public class Field extends DBObject<Field> {
 		return sb.toString();
 	}
 
+    public String getName(){
+        return expression;
+    }
+
     public static Field field(String tableDotField) {
         return new Field("", tableDotField);
     }
