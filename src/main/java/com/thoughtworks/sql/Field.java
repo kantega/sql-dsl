@@ -5,13 +5,14 @@ import static org.apache.commons.lang.StringUtils.isNotBlank;
 
 public class Field extends DBObject<Field> {
 
-	public final String table;
+    public final String table;
+    public final boolean distinct;
 
-	protected Field(String table, String expression) {
-		super(expression);
-		this.table = table;
-	}
-
+    protected Field(String table, String expression, boolean distinct) {
+        super(expression);
+        this.table = table;
+        this.distinct = distinct;
+    }
 	public String getFullyQualifiedName() {
 		StringBuilder sb = new StringBuilder( );
         if(isNotBlank(table)){
@@ -30,13 +31,25 @@ public class Field extends DBObject<Field> {
         return expression;
     }
 
-    public static Field field(String tableDotField) {
-        return new Field("", tableDotField);
+    public boolean isDistinct() {
+        return distinct;
     }
 
-	public static Field field(String table, String expression) {
-		return new Field(table, expression);
-	}
+    public static Field field(String tableDotField) {
+        return new Field("", tableDotField, false);
+    }
+
+    public static Field field(String tableDotField, boolean distinct) {
+        return new Field("", tableDotField, distinct);
+    }
+
+    public static Field field(String table, String expression, boolean distinct) {
+        return new Field(table, expression, distinct);
+    }
+
+    public static Field field(String table, String expression) {
+        return new Field(table, expression, false);
+    }
 
 	public Criterion eq(Object value) {
 		return UnaryCriterion.eq(this, value);
