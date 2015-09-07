@@ -27,11 +27,6 @@ public class Query {
         return new Query(fields);
     }
 
-    public Query distinct(){
-        distinct = true;
-        return this;
-    }
-
     public Query from(Table table) {
         this.table = table;
         return this;
@@ -84,10 +79,8 @@ public class Query {
         return sql.toString();
     }
 
-    private void visitDisctinctClause(StringBuilder sql){
-        if(distinct){
-            sql.append(DISTINCT).append(SPACE);
-        }
+    private void visitDisctinctClause(StringBuilder sql) {
+        sql.append(DISTINCT).append(SPACE);
     }
 
     private void visitOrderByClause(StringBuilder sql) {
@@ -150,6 +143,9 @@ public class Query {
             return;
         }
         for (Field field : fields) {
+            if (field.isDistinct()) {
+                visitDisctinctClause(sql);
+            }
             sql.append(field.getFullyQualifiedName()).append(COMMA);
         }
         sql.deleteCharAt(sql.length() - 1).append(SPACE);
